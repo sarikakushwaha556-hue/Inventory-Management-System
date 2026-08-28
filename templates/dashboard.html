@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <div class="sidebar">
+
+        <h2>IMS</h2>
+
+        <ul>
+            <li><a href="/dashboard">🏠 Dashboard</a></li>
+            <li><a href="/view-products">📦 Products</a></li>
+            <li><a href="/add-product">➕ Add Product</a></li>
+            <li><a href="/logout">🚪 Logout</a></li>
+        </ul>
+
+    </div>
+
+    <div class="main-content">
+
+        <div class="header">
+
+            <h1>Computer & Electronics Store</h1>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h2>{{ total_products }}</h2>
+                <p>Total Products</p>
+            </div>
+
+            <div class="card">
+                <h2>{{ total_categories }}</h2>
+                <p>Categories</p>
+            </div>
+
+            <div class="card">
+                <h2>{{ low_stock }}</h2>
+                <p>Low Stock</p>
+            </div>
+
+        </div>
+
+
+        <div class="low-stock-section">
+
+            <h2>⚠️ Low Stock Products</h2>
+
+            {% if low_stock_products %}
+
+            <table>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                </tr>
+
+                {% for product in low_stock_products %}
+                <tr>
+                    <td>{{ product['product_name'] }}</td>
+                    <td>{{ product['category'] }}</td>
+                    <td>⚠️ {{ product['quantity'] }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+            {% else %}
+
+            <p>No low stock products.</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
