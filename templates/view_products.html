@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Products</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="form-container">
+
+    <h1>View Products</h1>
+
+    <form action="/view-products" method="GET">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search product..."
+    >
+
+    <button type="submit">🔍 Search</button>
+
+    </form>
+
+    <table border="1" width="100%" cellpadding="10">
+
+    <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for product in products %}
+
+    <tr>
+        <td>{{ product['id'] }}</td>
+        <td>{{ product['product_name'] }}</td>
+        <td>{{ product['category'] }}</td>
+        <td>{{ product['brand'] }}</td>
+        <td>₹{{ product['price'] }}</td>
+        <td>{{ product['quantity'] }}</td>
+
+        <td>
+            {% if product['quantity'] <= 5 %}
+                ⚠️ Low Stock
+            {% else %}
+                ✅ In Stock
+            {% endif %}
+        </td>
+
+        <td>
+            <a href="/edit-product/{{ product['id'] }}">✏️ Edit</a>
+
+            <a href="/delete-product/{{ product['id'] }}"
+            onclick="return confirm('Are you sure you want to delete this product?')">
+            🗑️ Delete
+            </a>
+        </td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
