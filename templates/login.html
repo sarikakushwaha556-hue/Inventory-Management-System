@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory Management System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="login-container">
+
+    <div class="logo">📦</div>
+
+    <h1>Inventory Management System</h1>
+
+    <h2>Login</h2>
+
+    <form action="/dashboard">
+
+        <label>Username</label>
+
+        <input type="text" placeholder="Enter your Username">
+
+        <label>Password</label>
+
+        <input type="password" placeholder="Enter your Password">
+
+        <button type="submit">Login</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
